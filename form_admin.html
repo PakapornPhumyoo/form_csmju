@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - จัดการ Stock สินค้า</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e0f2f7; 
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            color: #0d47a1; 
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #90caf9; 
+            padding-bottom: 15px;
+            font-size: 2.2em;
+        }
+        .section {
+            margin-bottom: 40px;
+            background-color: #f7fbff;
+            border: 1px solid #bbdefb; 
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .section h2 {
+            color: #1976d2; 
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 1px dashed #90caf9; 
+            padding-bottom: 10px;
+            font-size: 1.6em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #e3f2fd; 
+            padding: 14px;
+            text-align: left;
+        }
+        th {
+            background-color: #e3f2fd; 
+            font-weight: 600;
+            color: #2196f3; 
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        tr:nth-child(even) {
+            background-color: #fcfdff; 
+        }
+        tr:hover {
+            background-color: #eaf8ff; 
+        }
+        .action-buttons button {
+            padding: 9px 15px;
+            margin-right: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .action-buttons button:hover {
+            transform: translateY(-1px);
+        }
+        .action-buttons .edit {
+            background-color: #2196f3; 
+            color: white;
+        }
+        .action-buttons .edit:hover {
+            background-color: #1976d2; 
+        }
+        .action-buttons .save {
+            background-color: #4caf50; 
+            color: white;
+        }
+        .action-buttons .save:hover {
+            background-color: #388e3c;
+        }
+        .action-buttons .cancel {
+            background-color: #f44336; 
+            color: white;
+        }
+        .action-buttons .cancel:hover {
+            background-color: #d32f2f;
+        }
+        .add-product-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .add-product-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.95em;
+        }
+        .add-product-form input[type="text"],
+        .add-product-form input[type="number"],
+        .add-product-form textarea,
+        .add-product-form input[type="file"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid #90caf9; 
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .add-product-form input[type="text"]:focus,
+        .add-product-form input[type="number"]:focus,
+        .add-product-form textarea:focus {
+            border-color: #2196f3; 
+            box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25); 
+            outline: none;
+        }
+        .add-product-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .form-full-width {
+            grid-column: 1 / -1;
+        }
+        .add-product-form button[type="submit"] {
+            grid-column: 1 / -1;
+            padding: 14px 25px;
+            background-color: #1976d2; 
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.15em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(25, 118, 210, 0.2);
+        }
+        .add-product-form button[type="submit"]:hover {
+            background-color: #0d47a1; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(25, 118, 210, 0.3);
+        }
+        .editable {
+            border: 1px solid #2196f3; 
+            padding: 5px;
+            border-radius: 3px;
+            background-color: #e3f2fd; 
+        }
+        .product-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #bbdefb; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard - จัดการ Stock สินค้า</h1>
+
+        <div class="section">
+            <h2>รายการสินค้าและ Stock</h2>
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>รูปภาพ</th>
+                        <th>ชื่อสินค้า</th>
+                        <th>รายละเอียด/คุณสมบัติ</th>
+                        <th>ราคา (บาท)</th>
+                        <th>Stock</th>
+                        <th>การจัดการ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>เพิ่มสินค้าใหม่</h2>
+            <form id="addProductForm" class="add-product-form">
+                <div>
+                    <label for="newProductName">ชื่อสินค้า:</label>
+                    <input type="text" id="newProductName" required>
+                </div>
+                <div>
+                    <label for="newProductPrice">ราคา (บาท):</label>
+                    <input type="number" id="newProductPrice" min="0" step="0.01" required>
+                </div>
+                <div>
+                    <label for="newProductStock">Stock:</label>
+                    <input type="number" id="newProductStock" min="0" required>
+                </div>
+                <div>
+                    <label for="newProductImage">รูปภาพสินค้า:</label>
+                    <input type="file" id="newProductImage" accept="image/*">
+                </div>
+                <div class="form-full-width">
+                    <label for="newProductDescription">รายละเอียด/คุณสมบัติ (เช่น สี, ขนาดสำหรับเสื้อ):</label>
+                    <textarea id="newProductDescription"></textarea>
+                </div>
+                <button type="submit">เพิ่มสินค้า</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        let products = [
+            { id: 1, image: 'https://scontent.fcnx4-1.fna.fbcdn.net/v/t39.30808-6/522624981_737045899081213_6789078957936994482_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFYKVTcenG95xeU_6kz9aJy8JsEcjB7wRvwmwRyMHvBG7J9I5eFT5ZP3Aug_Va1yF9j0bnHi4j1rc_eMX6SeTqi&_nc_ohc=_QxYKbFMMAEQ7kNvwFYc8x5&_nc_oc=AdnHFCuzm_lsS44w1H_Nu9GMIpWBV4nMh8UOo4ssNE18JCnMPMoCcStU8yF9CZmpS4YfJMT3wjHujL-kYe7FGt8q&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_gid=YKQZhs_H7r0FQ17SHbif-g&oh=00_AfR0PrAriHD83_j3pSu9iBmq4JIEScjMKPSgVF5HZ5T4kA&oe=6891398D', name: 'เสื้อ 30 ปี CSMJU', description: 'สี: ดำ, ขาว | ขนาด: S, M, L, XL', price: 320.00, stock: 100 },
+            { id: 2, image: 'https://scontent.fcnx4-2.fna.fbcdn.net/v/t39.30808-6/493005268_1301755201474899_6244571522193418191_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHk09sSXKjcsPiT9tARjl6kJn65A8wpqComfrkDzCmoKmy9BYLQpgg5N_aBozAfu_C2bOuzAwLgv9LNGoB8sRU1&_nc_ohc=mXsuhtXG0Y0Q7kNvwHy7JlI&_nc_oc=Adkv2p4I1gt_eWpFdD5VDWZCTYUYXr8_Bn3ABVNkqYXdYSvStZa2luapK3j0b6sgkeqMIvXaJypSx9_qZJJGeqRv&_nc_zt=23&_nc_ht=scontent.fcnx4-2.fna&_nc_gid=l8L5pdKb_8dQo-6Fp7qjPA&oh=00_AfQ8RPLUtww64enG2ScF-H4bD1UnkqjlCMjqyWu1MQ1PHQ&oe=68914DE9', name: 'กระเป๋าผ้า 30 ปี CSMJU', description: 'ลายพิเศษ', price: 150.00, stock: 50 },
+            { id: 3, image: 'https://xn--22cjab2g6avaicg1jsc6bb8owa6j.com/wp-content/uploads/2021/01/OFF_1855.jpg', name: 'แก้ว 30 ปี CSMJU', description: 'พร้อมฝาปิด', price: 120.00, stock: 75 },
+            { id: 4, image: 'https://scontent.fcnx4-2.fna.fbcdn.net/v/t39.30808-6/492481235_1238031848332148_2282682506782742991_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE0lnRO_yf_-cHBqa-btOsbJzIcQJLNIZ8nMhxAks0hnxJNTbdoyh5HC_onMHwVT8u7EylAfToVmBHLTMaNu7_X&_nc_ohc=PQfrWy4qssgQ7kNvwFCE-wl&_nc_oc=AdmbW17jegQsuuPXvyCBBSwtSX7tJN-THrUJGm1XG9vgR9MaTFAUWrzEOC2GvyqfLmHjVkj5J-54yDvfQNwYLenz&_nc_zt=23&_nc_ht=scontent.fcnx4-2.fna&_nc_gid=9zM5D9L_LP3tpZh4wFEeeQ&oh=00_AfS49Wi9J0yuQOQvbBkvU-XRbRKb-fG-ZP9sezGEHk026w&oe=68913411', name: 'หมวกแก๊ป 30 ปี CSMJU', description: 'ฟรีไซส์', price: 230.00, stock: 40 },
+            { id: 5, image: 'https://scontent.fcnx4-1.fna.fbcdn.net/v/t39.30808-6/492029679_1236780781790588_7464728754584669603_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHX_siIvvjj-KLo5FcANnNiuikpvFQEoo-6KSm8VASij4VQylTi0Xey8RmCPnCW77p-tR-3UiNViwxtpqFt9krs&_nc_ohc=cD7_zzER0lMQ7kNvwExrXvq&_nc_oc=Adm4ewKJem9jGVs_vpgo_3Rwi5LBrz5sGhvOdYNaCRgakPEqMk05IbqZoClJTqT7Dux7bJKrm1Wto5ryJLdbWh4y&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_gid=dTXTHZ3ak9M1R7uKK3uShg&oh=00_AfSoCUxJwum6PVZGalLbfqvpNwC8awf5V86ALMZgcQFlyg&oe=68913BB8', name: 'ร่มพับ 30 ปี CSMJU', description: 'กัน UV', price: 190.00, stock: 30 },
+            { id: 6, image: 'https://scontent.fcnx4-1.fna.fbcdn.net/v/t39.30808-6/489958334_1227374379397895_6079710356007599651_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEcJxPNyTz_Ug48V_rd3NYImcxbJ19p_WKZzFsnX2n9Yp1T1s2819_XIAbP4TuI2n-ZALS4Mbve2GHlYrDC4cC0&_nc_ohc=y5-AMDMGwhoQ7kNvwEYWUNU&_nc_oc=AdkjDCbRKrzTYrdtnED3McPOrpXyI88OBc5oPBInd6oiRA16hRpICMB1vsjl2yPjBCx5mIXSQZecZaEjryJY3pJG&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_gid=G1lIjgxZRxe0ksWPo72ckA&oh=00_AfQX6M8mCExThbLljrLlp_VNMze5-jVd1D026huJmaJ00w&oe=68914379', name: 'เข็มกลัด 30 ปี CSMJU', description: 'มีเส้น, A5', price: 149.00, stock: 120 },
+            { id: 7, image: 'https://maejopress2.mju.ac.th/goverment/20111119104834_maejopress2/File20130626125303_15383.jpg', name: 'สมุดโน้ต 30 ปี CSMJU', description: 'มีเส้น, A5', price: 10.00, stock: 120 },
+            { id: 8, image: 'https://xn--22cjab2g6avaicg1jsc6bb8owa6j.com/wp-content/uploads/2022/05/OFF_2015.jpg', name: 'ปากกา 30 ปี CSMJU', description: 'ลูกลื่น, หมึกน้ำเงิน', price: 15.00, stock: 200 }
+        ];
+
+        const productTableBody = document.querySelector('#productTable tbody');
+        const addProductForm = document.getElementById('addProductForm');
+
+
+        function renderProducts() {
+            productTableBody.innerHTML = '';
+            products.forEach(product => {
+                const row = productTableBody.insertRow();
+                row.dataset.productId = product.id;
+
+                row.innerHTML = `
+                    <td><img src="${product.image}" alt="${product.name}" class="product-image"></td>
+                    <td data-field="name">${product.name}</td>
+                    <td data-field="description">${product.description}</td>
+                    <td data-field="price">${product.price.toFixed(2)}</td>
+                    <td data-field="stock">${product.stock}</td>
+                    <td class="action-buttons">
+                        <button class="edit">แก้ไข</button>
+                        <button class="save" style="display:none;">บันทึก</button>
+                        <button class="cancel" style="display:none;">ยกเลิก</button>
+                    </td>
+                `;
+            });
+        }
+
+
+        function enableEdit(row) {
+            const cells = row.querySelectorAll('td[data-field]');
+            cells.forEach(cell => {
+                const field = cell.dataset.field;
+                let value = cell.innerText;
+
+
+                cell.dataset.originalValue = value;
+
+                let input;
+                if (field === 'description') {
+                    input = document.createElement('textarea');
+                    input.style.width = '100%';
+                    input.style.minHeight = '50px';
+                    input.style.boxSizing = 'border-box';
+                } else if (field === 'price' || field === 'stock') {
+                    input = document.createElement('input');
+                    input.type = 'number';
+                    input.step = (field === 'price' ? '0.01' : '1');
+                    input.min = '0';
+                    input.style.width = '80px';
+                } else {
+                    input = document.createElement('input');
+                    input.type = 'text';
+                    input.style.width = '100%';
+                }
+                input.value = value;
+                input.classList.add('editable');
+                cell.innerHTML = '';
+                cell.appendChild(input);
+            });
+
+            row.querySelector('.edit').style.display = 'none';
+            row.querySelector('.save').style.display = 'inline-block';
+            row.querySelector('.cancel').style.display = 'inline-block';
+        }
+
+
+        function saveEdit(row) {
+            const productId = parseInt(row.dataset.productId);
+            const productIndex = products.findIndex(p => p.id === productId);
+
+            if (productIndex !== -1) {
+                const cells = row.querySelectorAll('td[data-field]');
+                const updatedProduct = { ...products[productIndex] };
+
+                cells.forEach(cell => {
+                    const field = cell.dataset.field;
+                    const input = cell.querySelector('.editable');
+                    if (input) {
+                        let newValue = input.value;
+                        if (field === 'price') {
+                            updatedProduct[field] = parseFloat(newValue);
+                        } else if (field === 'stock') {
+                            updatedProduct[field] = parseInt(newValue);
+                        } else {
+                            updatedProduct[field] = newValue;
+                        }
+                    }
+                });
+
+                products[productIndex] = updatedProduct;
+                renderProducts();
+            }
+        }
+
+
+        function cancelEdit(row) {
+            const cells = row.querySelectorAll('td[data-field]');
+            cells.forEach(cell => {
+                const originalValue = cell.dataset.originalValue;
+                const field = cell.dataset.field;
+                if (field === 'price') {
+                    cell.innerHTML = parseFloat(originalValue).toFixed(2);
+                } else {
+                    cell.innerHTML = originalValue;
+                }
+            });
+
+            row.querySelector('.edit').style.display = 'inline-block';
+            row.querySelector('.save').style.display = 'none';
+            row.querySelector('.cancel').style.display = 'none';
+        }
+
+
+        productTableBody.addEventListener('click', function(event) {
+            const target = event.target;
+            const row = target.closest('tr');
+            if (!row) return;
+
+            if (target.classList.contains('edit')) {
+                enableEdit(row);
+            } else if (target.classList.contains('save')) {
+                saveEdit(row);
+            } else if (target.classList.contains('cancel')) {
+                cancelEdit(row);
+            }
+        });
+
+
+        addProductForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const newProductName = document.getElementById('newProductName').value;
+            const newProductPrice = parseFloat(document.getElementById('newProductPrice').value);
+            const newProductStock = parseInt(document.getElementById('newProductStock').value);
+            const newProductDescription = document.getElementById('newProductDescription').value;
+            const newProductImageFile = document.getElementById('newProductImage').files[0];
+
+            let newImageUrl = 'https://via.placeholder.com/100/eef1f5/555555?text=NO+IMAGE';
+
+            if (newProductImageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+
+                    const newProduct = {
+                        id: newId,
+                        image: e.target.result,
+                        name: newProductName,
+                        description: newProductDescription || '-',
+                        price: newProductPrice,
+                        stock: newProductStock
+                    };
+
+                    products.push(newProduct);
+                    renderProducts();
+                    addProductForm.reset();
+                    alert('เพิ่มสินค้าใหม่แล้ว (ข้อมูลจำลอง)');
+                };
+                reader.readAsDataURL(newProductImageFile);
+            } else {
+
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+
+                const newProduct = {
+                    id: newId,
+                    image: newImageUrl,
+                    name: newProductName,
+                    description: newProductDescription || '-',
+                    price: newProductPrice,
+                    stock: newProductStock
+                };
+
+                products.push(newProduct);
+                renderProducts();
+                addProductForm.reset();
+                alert('เพิ่มสินค้าใหม่แล้ว (ข้อมูลจำลอง)');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
+</body>
+</html>
