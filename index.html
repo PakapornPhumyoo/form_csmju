@@ -5,57 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบฟอร์มสั่งซื้อของที่ระลึก 30 ปี CSMJU</title>
     <style>
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             padding: 20px;
-            background-color: #e0f2f7; 
+            background-color: #e0f2f7;
             color: #333;
             line-height: 1.6;
         }
         .container {
-            max-width: 850px; 
-            margin: 20px auto; 
+            max-width: 850px;
+            margin: 20px auto;
             background-color: #ffffff;
-            padding: 30px 40px; 
-            border-radius: 12px; 
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); 
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
         h1, h2 {
-            color: #007bff; 
+            color: #007bff;
             text-align: center;
             margin-bottom: 25px;
-            font-weight: 600; 
+            font-weight: 600;
         }
         p {
             text-align: center;
             color: #555;
             margin-bottom: 25px;
         }
-
-        
         .section {
-            margin-bottom: 35px; 
-            border: 1px solid #b3e5fc; 
-            padding: 25px; 
-            border-radius: 8px; 
-            background-color: #f7fcff; 
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
+            margin-bottom: 35px;
+            border: 1px solid #b3e5fc;
+            padding: 25px;
+            border-radius: 8px;
+            background-color: #f7fcff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         .section h3 {
             margin-top: 0;
             color: #0277bd;
-            border-bottom: 2px solid #81d4fa; 
+            border-bottom: 2px solid #81d4fa;
             padding-bottom: 12px;
             margin-bottom: 25px;
             font-weight: 600;
             font-size: 1.3em;
         }
-
-        
         .form-group {
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
         }
         .form-group label {
             display: block;
@@ -69,10 +64,10 @@
         .form-group input[type="tel"],
         .form-group textarea,
         .form-group select {
-            width: calc(100% - 24px); 
-            padding: 12px; 
-            border: 1px solid #a7d9ed; 
-            border-radius: 6px; 
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid #a7d9ed;
+            border-radius: 6px;
             box-sizing: border-box;
             font-size: 1em;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -82,129 +77,119 @@
         .form-group input[type="tel"]:focus,
         .form-group textarea:focus,
         .form-group select:focus {
-            border-color: #007bff; 
+            border-color: #007bff;
             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
-            outline: none; 
+            outline: none;
         }
         .form-group textarea {
-            min-height: 100px; 
+            min-height: 100px;
             resize: vertical;
         }
         .form-group small {
-            color: #666; 
+            color: #666;
             font-size: 0.85em;
             margin-top: 5px;
             display: block;
         }
-
-     
         .product-item {
             display: flex;
             align-items: center;
-            margin-bottom: 20px; 
-            border: 1px solid #e1f5fe; 
-            padding: 15px; 
-            border-radius: 8px; 
-            background-color: #ffffff; 
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); 
+            margin-bottom: 20px;
+            border: 1px solid #e1f5fe;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
             transition: transform 0.2s ease;
         }
         .product-item:hover {
-            transform: translateY(-3px); 
+            transform: translateY(-3px);
         }
         .product-item input[type="checkbox"] {
-            margin-right: 20px; 
-            transform: scale(1.6); 
-            min-width: 20px; 
+            margin-right: 20px;
+            transform: scale(1.6);
+            min-width: 20px;
             min-height: 20px;
         }
         .product-details {
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
             flex-grow: 1;
         }
         .product-details img {
-            width: 120px; 
-            height: 120px; 
+            width: 120px;
+            height: 120px;
             object-fit: cover;
-            border-radius: 8px; 
-            margin-right: 25px; 
-            border: 2px solid #add8e6; 
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); 
+            border-radius: 8px;
+            margin-right: 25px;
+            border: 2px solid #add8e6;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         }
-        .product-text-info { 
+        .product-text-info {
             flex-grow: 1;
         }
         .product-name {
             font-weight: bold;
-            color: #0056b3; 
-            font-size: 1.2em; 
+            color: #0056b3;
+            font-size: 1.2em;
             margin-bottom: 5px;
         }
         .product-info {
-            font-size: 0.95em; 
+            font-size: 0.95em;
             color: #666;
             margin-bottom: 10px;
         }
         .product-quantity label {
-            margin-left: 0; 
-            display: inline-block; 
+            margin-left: 0;
+            display: inline-block;
             margin-right: 10px;
-            font-weight: normal; 
+            font-weight: normal;
         }
         .product-quantity input[type="number"] {
-            width: 70px; 
+            width: 70px;
             padding: 8px;
-            border: 1px solid #a7d9ed; 
+            border: 1px solid #a7d9ed;
             border-radius: 4px;
             text-align: center;
             font-size: 1em;
         }
-
-        
         .delivery-options label {
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
             margin-bottom: 12px;
             font-size: 1em;
             color: #333;
-            cursor: pointer; 
-        }
-        .delivery-options input[type="radio"] {
-            margin-right: 12px; 
-            transform: scale(1.2); 
             cursor: pointer;
         }
-
-    
+        .delivery-options input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
         .button-group {
             text-align: center;
             margin-top: 40px;
         }
         .button-group button {
-            background-color: #007bff; 
+            background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 8px; 
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1.2em; 
+            font-size: 1.2em;
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2); 
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
         }
         .button-group button:hover {
-            background-color: #0056b3; 
-            transform: translateY(-2px); 
+            background-color: #0056b3;
+            transform: translateY(-2px);
         }
-
-        
         .required::after {
             content: " *";
             color: #dc3545;
             font-size: 1.1em;
         }
-
-        
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -214,8 +199,8 @@
                 padding: 15px;
             }
             .product-item {
-                flex-direction: column; 
-                align-items: flex-start; 
+                flex-direction: column;
+                align-items: flex-start;
                 text-align: left;
             }
             .product-details {
@@ -237,7 +222,6 @@
     <div class="container">
         <h1>แบบฟอร์มสั่งซื้อของที่ระลึก 30 ปี CS</h1>
         <p>กรุณากรอกข้อมูลและเลือกสินค้าที่ต้องการสั่งซื้อ</p>
-
         <form id="orderForm">
             <div class="section">
                 <h3>ข้อมูลลูกค้า</h3>
@@ -259,16 +243,14 @@
                     <input type="email" id="email" name="email">
                 </div>
             </div>
-
             <div class="section">
                 <h3>เลือกสินค้าที่ต้องการ</h3>
                 <p style="text-align: left; color: #666; font-style: italic;">(สามารถเลือกได้หลายรายการ)</p>
-
                 <div class="product-list">
                     <div class="product-item">
                         <input type="checkbox" id="product1" name="products" value="เสื้อ">
                         <div class="product-details">
-                            <img src="https://scontent.fcnx4-1.fna.fbcdn.net/v/t39.30808-6/522624981_737045899081213_6789078957936994482_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFYKVTcenG95xeU_6kz9aJy8JsEcjB7wRvwmwRyMHvBG7J9I5eFT5ZP3Aug_Va1yF9j0bnHi4j1rc_eMX6SeTqi&_nc_ohc=_QxYKbFMMAEQ7kNvwFYc8x5&_nc_oc=AdnHFCuzm_lsS44w1H_Nu9GMIpWBV4nMh8UOo4ssNE18JCnMPMoCcStU8yF9CZmpS4YfJMT3wjHujL-kYe7FGt8q&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_gid=YKQZhs_H7r0FQ17SHbif-g&oh=00_AfR0PrAriHD83_j3pSu9iBmq4JIEScjMKPSgVF5HZ5T4kA&oe=6891398D" alt="เสื้อ">
+                            <img src="images/shrit_csmju.jpg" alt="เสื้อ">
                             <div class="product-text-info">
                                 <div class="product-name">เสื้อ 30 ปี CSMJU</div>
                                 <div class="product-info">ราคา: 320 บาท</div>
@@ -297,11 +279,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="product-item">
                         <input type="checkbox" id="product2" name="products" value="กระเป๋า">
                         <div class="product-details">
-                            <img src="https://scontent.fcnx4-2.fna.fbcdn.net/v/t39.30808-6/493005268_1301755201474899_6244571522193418191_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHk09sSXKjcsPiT9tARjl6kJn65A8wpqComfrkDzCmoKmy9BYLQpgg5N_aBozAfu_C2bOuzAwLgv9LNGoB8sRU1&_nc_ohc=mXsuhtXG0Y0Q7kNvwHy7JlI&_nc_oc=Adkv2p4I1gt_eWpFdD5VDWZCTYUYXr8_Bn3ABVNkqYXdYSvStZa2luapK3j0b6sgkeqMIvXaJypSx9_qZJJGeqRv&_nc_zt=23&_nc_ht=scontent.fcnx4-2.fna&_nc_gid=l8L5pdKb_8dQo-6Fp7qjPA&oh=00_AfQ8RPLUtww64enG2ScF-H4bD1UnkqjlCMjqyWu1MQ1PHQ&oe=68914DE9" alt="กระเป๋า">
+                            <img src="images/bag.jpg" alt="กระเป๋า">
                             <div class="product-text-info">
                                 <div class="product-name">กระเป๋าผ้า 30 ปี CSMJU</div>
                                 <div class="product-info">ราคา: 150 บาท</div>
@@ -312,11 +293,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="product-item">
                         <input type="checkbox" id="product3" name="products" value="แก้ว">
                         <div class="product-details">
-                            <img src="https://xn--22cjab2g6avaicg1jsc6bb8owa6j.com/wp-content/uploads/2021/01/OFF_1855.jpg" alt="แก้ว">
+                            <img src="images/glass.jpg" alt="แก้ว">
                             <div class="product-text-info">
                                 <div class="product-name">แก้ว 30 ปี CSMJU</div>
                                 <div class="product-info">ราคา: 120 บาท</div>
@@ -327,11 +307,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="product-item">
                         <input type="checkbox" id="product4" name="products" value="หมวก">
                         <div class="product-details">
-                            <img src="https://scontent.fcnx4-1.fna.fbcdn.net/v/t39.30808-6/493031900_1239409568194376_3163178351456735738_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHilLr05h7pWaVopT_75u9GPdeX9-E-FDE915f34T4UMda6H6Oo-57XTPWRE9rhWyt7DgRFaMl08wEfCKYdfEGZ&_nc_ohc=4T1UJbPHQKcQ7kNvwFDW2HO&_nc_oc=AdnlyQJYGzPTOjsP5O7dho4-sUTbqU_f5hz8H2yLCCZ0zu1Gww6QV5DSdBmP6BUA9JGSIKOf_agmM3j6lOvD3DAL&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_gid=TlWBfZ-nCL2XvEM_HjJogA&oh=00_AfSaLOrmyi8MKrB1bAgQ-bzC-qXb8KDVPv2g8FY_8BCxkA&oe=68915CB6" alt="หมวก">
+                            <img src="images/cap.jpg" alt="หมวก">
                             <div class="product-text-info">
                                 <div class="product-name">หมวกแก๊ป 30 ปี CSMJU</div>
                                 <div class="product-info">ราคา: 230 บาท</div>
@@ -342,11 +321,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="product-item">
                         <input type="checkbox" id="product5" name="products" value="ร่ม">
                         <div class="product-details">
-                            <img src="https://scontent.fcnx4-1.fna.fbcdn.net/v/t39.30808-6/492029679_1236780781790588_7464728754584669603_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHX_siIvvjj-KLo5FcANnNiuikpvFQEoo-6KSm8VASij4VQylTi0Xey8RmCPnCW77p-tR-3UiNViwxtpqFt9krs&_nc_ohc=cD7_zzER0lMQ7kNvwExrXvq&_nc_oc=Adm4ewKJem9jGVs_vpgo_3Rwi5LBrz5sGhvOdYNaCRgakPEqMk05IbqZoClJTqT7Dux7bJKrm1Wto5ryJLdbWh4y&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_gid=dTXTHZ3ak9M1R7uKK3uShg&oh=00_AfSoCUxJwum6PVZGalLbfqvpNwC8awf5V86ALMZgcQFlyg&oe=68913BB8" alt="ร่ม">
+                            <img src="images/umbella.jpg" alt="ร่ม">
                             <div class="product-text-info">
                                 <div class="product-name">ร่มพับ 30 ปี CS</div>
                                 <div class="product-info">ราคา: 190 บาท</div>
@@ -357,11 +335,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="product-item">
                         <input type="checkbox" id="product6" name="products" value="เข็มกลัด">
                         <div class="product-details">
-                            <img src="https://scontent.fcnx4-1.fna.fbcdn.net/v/t39.30808-6/489958334_1227374379397895_6079710356007599651_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEcJxPNyTz_Ug48V_rd3NYImcxbJ19p_WKZzFsnX2n9Yp1T1s2819_XIAbP4TuI2n-ZALS4Mbve2GHlYrDC4cC0&_nc_ohc=y5-AMDMGwhoQ7kNvwEYWUNU&_nc_oc=AdkjDCbRKrzTYrdtnED3McPOrpXyI88OBc5oPBInd6oiRA16hRpICMB1vsjl2yPjBCx5mIXSQZecZaEjryJY3pJG&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_gid=G1lIjgxZRxe0ksWPo72ckA&oh=00_AfQX6M8mCExThbLljrLlp_VNMze5-jVd1D026huJmaJ00w&oe=68914379" alt="เข็มกลัด">
+                            <img src="images/mju_clip.jpg" alt="เข็มกลัด">
                             <div class="product-text-info">
                                 <div class="product-name">เข็มกลัด 30 ปี CSMJU</div>
                                 <div class="product-info">ราคา: 149 บาท</div>
@@ -371,11 +348,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="product-item">
                         <input type="checkbox" id="product7" name="products" value="สมุด">
                         <div class="product-details">
-                            <img src="https://maejopress2.mju.ac.th/goverment/20111119104834_maejopress2/File20130626125303_15383.jpg" alt="สมุด">
+                            <img src="images/notebook.jpg" alt="สมุด">
                             <div class="product-text-info">
                                 <div class="product-name">สมุดโน้ต 30 ปี CSMJU</div>
                                 <div class="product-info">ราคา: 10 บาท</div>
@@ -386,11 +362,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="product-item">
                         <input type="checkbox" id="product8" name="products" value="ปากกา">
                         <div class="product-details">
-                            <img src="https://xn--22cjab2g6avaicg1jsc6bb8owa6j.com/wp-content/uploads/2022/05/OFF_2015.jpg" alt="ปากกา">
+                            <img src="images/pen.jpg" alt="ปากกา">
                             <div class="product-text-info">
                                 <div class="product-name">ปากกา 30 ปี CSMJU</div>
                                 <div class="product-info">ราคา: 15 บาท</div>
@@ -401,10 +376,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
             <div class="section">
                 <h3>ข้อมูลการชำระเงินและการจัดส่ง</h3>
                 <div class="form-group">
@@ -422,51 +395,42 @@
                     <label><input type="radio" name="deliveryMethod" value="ไปรษณีย์"> จัดส่งทางไปรษณีย์ (มีค่าใช้จ่ายเพิ่มเติม)</label>
                 </div>
             </div>
-
             <div class="button-group">
                 <button type="submit">ยืนยันการสั่งซื้อ</button>
             </div>
         </form>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('orderForm');
             const productCheckboxes = document.querySelectorAll('.product-item input[type="checkbox"]');
-
             productCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
                     const parentDiv = this.closest('.product-item');
                     const selects = parentDiv.querySelectorAll('select');
                     const inputs = parentDiv.querySelectorAll('input[type="number"]');
-
                     if (this.checked) {
                         selects.forEach(select => select.removeAttribute('disabled'));
                         inputs.forEach(input => input.removeAttribute('disabled'));
                     } else {
                         selects.forEach(select => {
                             select.setAttribute('disabled', 'disabled');
-                            select.value = ""; // Reset value when unchecked
+                            select.value = "";
                         });
                         inputs.forEach(input => {
                             input.setAttribute('disabled', 'disabled');
-                            input.value = "1"; // Reset quantity to 1
+                            input.value = "1";
                         });
                     }
                 });
             });
-
             form.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Basic validation for at least one product selected
+                event.preventDefault();
                 const anyProductSelected = Array.from(productCheckboxes).some(checkbox => checkbox.checked);
                 if (!anyProductSelected) {
                     alert('กรุณาเลือกสินค้าอย่างน้อย 1 รายการ');
                     return;
                 }
-
-                // Gather form data
                 const formData = {
                     fullName: document.getElementById('fullName').value,
                     address: document.getElementById('address').value,
@@ -476,25 +440,20 @@
                     paymentDate: document.getElementById('paymentDate').value,
                     deliveryMethod: document.querySelector('input[name="deliveryMethod"]:checked')?.value || 'ไม่ได้ระบุ'
                 };
-
-                // Get selected products and their details
-                let validationFailed = false; // Flag to stop submission if validation fails
+                let validationFailed = false;
                 productCheckboxes.forEach(checkbox => {
                     if (checkbox.checked) {
                         const productItem = checkbox.closest('.product-item');
                         const productName = productItem.querySelector('.product-name').innerText;
                         const productDetails = {};
-
-                        // Add product-specific details
                         if (checkbox.value === 'เสื้อ') {
                             productDetails.color = productItem.querySelector('#shirtColor').value;
                             productDetails.size = productItem.querySelector('#shirtSize').value;
                             productDetails.qty = productItem.querySelector('#shirtQty').value;
-                            // Basic validation for shirt options
                             if (!productDetails.color || !productDetails.size) {
                                 alert('กรุณาเลือกสีและขนาดสำหรับเสื้อ');
-                                validationFailed = true; // Set flag
-                                return; // Stop processing this product
+                                validationFailed = true;
+                                return;
                             }
                         } else if (checkbox.value === 'กระเป๋า') {
                             productDetails.qty = productItem.querySelector('#bagQty').value;
@@ -504,39 +463,30 @@
                             productDetails.qty = productItem.querySelector('#capQty').value;
                         } else if (checkbox.value === 'ร่ม') {
                             productDetails.qty = productItem.querySelector('#umbrellaQty').value;
-                        } else if (checkbox.value === 'เข็มกลัด') { // Added forเข็มกลัด
-                            productDetails.qty = productItem.querySelector('#badgeQty').value; // Corrected ID
+                        } else if (checkbox.value === 'เข็มกลัด') {
+                            productDetails.qty = productItem.querySelector('#badgeQty').value;
                         } else if (checkbox.value === 'สมุด') {
                             productDetails.qty = productItem.querySelector('#notebookQty').value;
                         } else if (checkbox.value === 'ปากกา') {
                             productDetails.qty = productItem.querySelector('#penQty').value;
                         }
-                        
                         formData.selectedProducts.push({
                             name: productName,
                             details: productDetails
                         });
                     }
                 });
-
                 if (validationFailed) {
-                    return; // Stop form submission if any product validation failed
+                    return;
                 }
-
-                // Handle slip upload (for demonstration, we'll just get the file name)
                 const slipFile = document.getElementById('slipUpload').files[0];
                 if (slipFile) {
                     formData.slipFileName = slipFile.name;
-                    // In a real application, you'd upload this file to a server.
                 } else {
                     alert('กรุณาอัปโหลดรูปภาพสลิปการโอนเงิน');
                     return;
                 }
-
-                // Store data in sessionStorage to pass to the next page
                 sessionStorage.setItem('orderData', JSON.stringify(formData));
-
-                // Redirect to confirmation page
                 window.location.href = 'confirm.html';
             });
         });
